@@ -3,7 +3,7 @@ set -euo pipefail
 
 # MyApp - Local Development Script
 # Usage: ./start.sh [command]
-# Commands: start (default), stop, restart, logs, status
+# Commands: start (default), stop, restart, logs, status, init
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
@@ -103,6 +103,27 @@ cmd_status() {
     pm2 status
 }
 
+cmd_init() {
+    log "Initializing project for first-time setup..."
+
+    # Check all required tools
+    check_deps
+
+    # Create .env files
+    ensure_env
+
+    # Install frontend dependencies
+    log "Installing frontend dependencies..."
+    (cd frontend && pnpm install)
+
+    # Build backend to verify Go setup
+    log "Verifying backend build..."
+    (cd backend && go build -o /dev/null ./cmd/server)
+
+    echo ""
+    log "Init complete! Run './start.sh' to start dev servers."
+}
+
 # Main
 case "${1:-start}" in
     start)   cmd_start ;;
@@ -110,8 +131,9 @@ case "${1:-start}" in
     restart) cmd_restart ;;
     logs)    cmd_logs ;;
     status)  cmd_status ;;
+    init)    cmd_init ;;
     *)
-        echo "Usage: ./start.sh [start|stop|restart|logs|status]"
+        echo "Usage: ./start.sh [start|stop|restart|logs|status|init]"
         exit 1
         ;;
 esac
