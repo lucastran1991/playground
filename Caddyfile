@@ -1,0 +1,29 @@
+# MyApp - Caddy Reverse Proxy
+# Replace yourdomain.com with your actual domain
+# Caddy auto-provisions HTTPS via Let's Encrypt
+#
+# Usage:
+#   sudo cp Caddyfile /etc/caddy/Caddyfile
+#   sudo systemctl restart caddy
+
+yourdomain.com {
+    # Backend API
+    handle /api/* {
+        reverse_proxy localhost:8080
+    }
+
+    # Health check
+    handle /health {
+        reverse_proxy localhost:8080
+    }
+
+    # Swagger docs (remove or protect in production)
+    handle /swagger/* {
+        reverse_proxy localhost:8080
+    }
+
+    # Frontend (Next.js)
+    handle {
+        reverse_proxy localhost:3000
+    }
+}

@@ -1,0 +1,11 @@
+{
+  "app_name": "myapp",
+  "backend": {
+    "port": 8080,
+    "cwd": "./backend"
+  },
+  "frontend": {
+    "port": 3000,
+    "cwd": "./frontend"
+  }
+}

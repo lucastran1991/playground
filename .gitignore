@@ -1,19 +1,15 @@
-# Binaries for programs and plugins
+# Binaries
 *.exe
-*.exe~
 *.dll
 *.so
 *.dylib
 backend/server
+backend/server.bak
 
-# Test binary, built with `go test -c`
+# Test/coverage
 *.test
-
-# Code coverage profiles and other test artifacts
 *.out
 coverage.*
-*.coverprofile
-profile.cov
 
 # Go
 go.work
@@ -24,12 +20,22 @@ node_modules/
 .next/
 *.tsbuildinfo
 
-# Generated files
-repomix-output.*
+# Database
+*.db
 
-# env file
+# Environment
 .env
+.env.local
 
-# Editor/IDE
-# .idea/
-# .vscode/
+# Editor
+.idea/
+.vscode/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Generated
+repomix-output.*
