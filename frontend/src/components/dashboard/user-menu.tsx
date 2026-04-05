@@ -29,15 +29,25 @@ export function UserMenu() {
       >
         <GlassAvatar size="sm" fallback={initials} />
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-56">
+      <DropdownMenuContent
+        align="end"
+        className="w-56"
+        style={{
+          background: "rgba(12, 10, 35, 0.9)",
+          backdropFilter: "blur(24px)",
+          WebkitBackdropFilter: "blur(24px)",
+          border: "1px solid rgba(255, 255, 255, 0.13)",
+          boxShadow: "0 16px 40px rgba(0, 0, 0, 0.4)",
+        }}
+      >
         <DropdownMenuLabel>
-          <p className="text-sm font-medium">{user?.name}</p>
-          <p className="text-xs text-muted-foreground">{user?.email}</p>
+          <p className="text-sm font-medium text-white">{user?.name}</p>
+          <p className="text-xs text-white/50">{user?.email}</p>
         </DropdownMenuLabel>
-        <DropdownMenuSeparator />
+        <DropdownMenuSeparator className="bg-white/[0.07]" />
         <DropdownMenuItem
           onClick={() => signOut({ callbackUrl: "/login" })}
-          className="cursor-pointer text-destructive focus:text-destructive"
+          className="cursor-pointer text-[#f0997b] focus:text-[#f0997b] focus:bg-[rgba(216,90,48,0.12)]"
         >
           Sign out
         </DropdownMenuItem>
