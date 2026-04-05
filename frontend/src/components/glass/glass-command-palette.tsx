@@ -115,7 +115,7 @@ export function GlassCommandPalette({
     >
       {/* Card */}
       <div
-        className="w-full max-w-[560px] mx-4 overflow-hidden"
+        className="w-[calc(100vw-32px)] max-w-[560px] overflow-hidden"
         style={{
           background: "rgba(12,10,35,0.95)",
           border: "1px solid rgba(255,255,255,0.13)",

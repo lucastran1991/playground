@@ -249,6 +249,18 @@
   }
 }
 
+/* Midnight variant — softer navy dark theme, toggled via .theme-midnight wrapper div inside ThemeProvider */
+/* The wrapper div itself gets the gradient so body gradient doesn't need overriding */
+.theme-midnight {
+  --background: #1a1f36;
+  background: linear-gradient(135deg, #1a1f36, #252d4a, #1e2640);
+  min-height: 100vh;
+}
+
+.theme-midnight .bg-gradient-glass {
+  background: linear-gradient(135deg, #1a1f36, #252d4a, #1e2640);
+}
+
 /* Glass animation keyframes */
 @keyframes glass-spin { to { transform: rotate(360deg); } }
 @keyframes glass-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }

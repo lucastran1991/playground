@@ -3,6 +3,7 @@
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { GlassBreadcrumb } from "@/components/glass/glass-breadcrumb"
 import { UserMenu } from "./user-menu"
+import { ThemeToggle } from "./theme-toggle"
 
 export function Topbar() {
   return (
@@ -13,9 +14,9 @@ export function Topbar() {
         <GlassBreadcrumb items={[{ label: "Dashboard" }]} />
       </div>
       <div className="flex items-center gap-2">
-        {/* Search placeholder */}
+        {/* Search placeholder — hidden on mobile */}
         <div
-          className="flex items-center"
+          className="hidden md:flex items-center"
           style={{
             gap: 8,
             padding: "8px 14px",
@@ -84,6 +85,7 @@ export function Topbar() {
           Pro
         </span>
 
+        <ThemeToggle />
         <UserMenu />
       </div>
     </header>
