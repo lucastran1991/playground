@@ -103,6 +103,67 @@ All UI surfaces use dark mode (`--background: #0f0c29`). Light mode tokens exist
 - No light mode toggle (unless explicitly added for advanced users)
 - Uses `next-themes` library
 
+## Glass Component Library
+
+Custom component library replacing shadcn/ui for glassmorphism-optimized UI. Located at `src/components/glass/` with central export in `src/components/glass/index.ts`.
+
+### Core Interactive (9 components)
+- **GlassButton** – 7 variants (primary, secondary, destructive, ghost, outline, link, gradient) × 4 sizes (sm, md, lg, xl)
+- **GlassInput** – Text input with states, icons, validation
+- **GlassInputGroup** – Input with prefix/suffix labels
+- **GlassSelect** – Dropdown select menu
+- **GlassTextarea** – Multi-line text input
+- **GlassToggle** – On/off switch
+- **GlassCheckbox** – Checkbox with label
+- **GlassRadio** – Radio button group
+- **GlassOtpInput** – 6-digit OTP input with auto-focus
+
+### Feedback & Status (7 components)
+- **GlassBadge** – 6 colors (primary, secondary, accent, destructive, warning, info)
+- **GlassChip** – Removable tag/chip
+- **GlassAlert** – 4 types (success, error, warning, info)
+- **GlassToast** – Toast notifications with provider & hook
+- **GlassProgress** – Bar & circular progress indicators
+- **GlassSkeleton** – Content loading placeholder
+- **GlassSpinner** – 3 spinner animations (ring, dots, bars)
+
+### Layout (7 components)
+- **GlassCard** – Content container with glass effect
+- **GlassStatCard** – KPI card with trend indicator
+- **GlassTabs** – 2 variants (pill, underline)
+- **GlassAccordion** – Collapsible sections
+- **GlassTable** – Sortable data table
+- **GlassList** – Vertical list with item actions
+- **GlassAvatar** – User avatar + AvatarStack for groups
+
+### Overlay & Advanced (5 components)
+- **GlassCommandPalette** – Cmd+K search/navigation
+- **GlassSteps** – Progress stepper
+- **GlassTimeline** – Vertical timeline with events
+- **GlassDropdown** – Context menu
+- **GlassTooltip** – Hover tooltip
+
+### Specialized (6 components)
+- **GlassDropzone** – File upload zone
+- **GlassCodeBlock** – Syntax-highlighted code with copy
+- **GlassEmptyState** – Placeholder for empty lists
+- **GlassDivider** – Visual separator
+- **GlassBreadcrumb** – Navigation breadcrumbs
+- **GlassPagination** – Page controls
+
+### shadcn/ui Retained Components
+Complex behavioral components kept from shadcn/ui for simplicity:
+- **Sidebar** – Multi-level navigation
+- **Sheet** – Slide-out panels
+- **DropdownMenu** – Nested menu support
+- **Tooltip** (advanced) – Complex positioning
+
+### Import Pattern
+```tsx
+// Named imports from glass library
+import { GlassButton, GlassCard, GlassInput } from "@/components/glass"
+```
+
 ## Component Patterns
 
 ### Button Variants

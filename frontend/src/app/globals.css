@@ -40,6 +40,24 @@
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) * 1.4);
+
+  /* Glass palette for Tailwind utilities (e.g. text-glass-purple, bg-glass-teal) */
+  --color-glass-purple: var(--glass-purple);
+  --color-glass-purple-light: var(--glass-purple-light);
+  --color-glass-purple-dark: var(--glass-purple-dark);
+  --color-glass-teal: var(--glass-teal);
+  --color-glass-teal-light: var(--glass-teal-light);
+  --color-glass-teal-dark: var(--glass-teal-dark);
+  --color-glass-coral: var(--glass-coral);
+  --color-glass-coral-light: var(--glass-coral-light);
+  --color-glass-coral-dark: var(--glass-coral-dark);
+  --color-glass-pink: var(--glass-pink);
+  --color-glass-pink-light: var(--glass-pink-light);
+  --color-glass-amber: var(--glass-amber);
+  --color-glass-amber-light: var(--glass-amber-light);
+  --color-glass-amber-dark: var(--glass-amber-dark);
+  --color-glass-blue: var(--glass-blue);
+  --color-glass-blue-light: var(--glass-blue-light);
 }
 
 /* Light mode design tokens — deep teal primary, warm amber accent, slate neutrals */
@@ -104,6 +122,27 @@
   --sidebar-accent-foreground: #afa9ec;
   --sidebar-border: rgba(255, 255, 255, 0.08);
   --sidebar-ring: rgba(127, 119, 221, 0.6);
+
+  /* Glass component palette */
+  --glass-purple: #7f77dd;
+  --glass-purple-light: #afa9ec;
+  --glass-purple-dark: #534ab7;
+  --glass-teal: #1d9e75;
+  --glass-teal-light: #5dcaa5;
+  --glass-teal-dark: #0f6e56;
+  --glass-coral: #d85a30;
+  --glass-coral-light: #f0997b;
+  --glass-coral-dark: #993c1d;
+  --glass-pink: #d4537e;
+  --glass-pink-light: #ed93b1;
+  --glass-amber: #ef9f27;
+  --glass-amber-light: #fac775;
+  --glass-amber-dark: #ba7517;
+  --glass-blue: #378add;
+  --glass-blue-light: #85b7eb;
+  --glass-bg: rgba(255, 255, 255, 0.07);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-bg-dark: rgba(0, 0, 0, 0.28);
 }
 
 @layer base {
@@ -209,6 +248,12 @@
     pointer-events: none;
   }
 }
+
+/* Glass animation keyframes */
+@keyframes glass-spin { to { transform: rotate(360deg); } }
+@keyframes glass-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+@keyframes glass-bounce { 0%, 80%, 100% { transform: scaleY(0.4); } 40% { transform: scaleY(1); } }
+@keyframes glass-shimmer { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }
 
 /* Fallback for browsers without backdrop-filter */
 @supports not (backdrop-filter: blur(1px)) {

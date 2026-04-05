@@ -1,15 +1,14 @@
 "use client"
 
 import { useTheme } from "next-themes"
-import { Button } from "@/components/ui/button"
+import { GlassButton } from "@/components/glass/glass-button"
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme()
 
   return (
-    <Button
-      variant="ghost"
-      size="icon"
+    <GlassButton
+      iconOnly
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       aria-label="Toggle theme"
     >
@@ -40,6 +39,6 @@ export function ThemeToggle() {
       >
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
       </svg>
-    </Button>
+    </GlassButton>
   )
 }

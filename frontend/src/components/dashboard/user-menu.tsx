@@ -2,7 +2,7 @@
 
 import { signOut } from "next-auth/react"
 import { useAuth } from "@/hooks/use-auth"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { GlassAvatar } from "@/components/glass/glass-avatar"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,11 +27,7 @@ export function UserMenu() {
           <button className="rounded-full outline-none ring-ring focus-visible:ring-2" />
         }
       >
-        <Avatar className="h-8 w-8">
-          <AvatarFallback className="bg-primary text-primary-foreground text-xs">
-            {initials}
-          </AvatarFallback>
-        </Avatar>
+        <GlassAvatar size="sm" fallback={initials} />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuLabel>

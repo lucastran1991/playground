@@ -122,7 +122,14 @@ src/
   components/       # Reusable React components
     auth/           # Auth-specific components
     dashboard/      # Dashboard-specific components
-    ui/             # Shadcn/ui or generic UI components
+    glass/          # Glassmorphism component library (34 components)
+      glass-button.tsx
+      glass-input.tsx
+      glass-card.tsx
+      glass-toast.tsx
+      ...
+      index.ts      # Central export file
+    ui/             # Shadcn/ui components (Sidebar, Sheet, DropdownMenu, Tooltip)
 
   hooks/            # Custom React hooks
     use-auth.ts
