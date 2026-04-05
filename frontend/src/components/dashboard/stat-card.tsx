@@ -1,21 +1,21 @@
 import React from "react"
+import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 
-export interface GlassStatCardChange {
+export interface StatCardChange {
   value: string
   direction: "up" | "down"
 }
 
-export interface GlassStatCardProps {
+export interface StatCardProps {
   icon: React.ReactNode
   iconBg?: string
   value: string
   label: string
-  change?: GlassStatCardChange
+  change?: StatCardChange
   className?: string
 }
 
-// Arrow SVG for change indicator
 function ArrowUp() {
   return (
     <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
@@ -32,17 +32,9 @@ function ArrowDown() {
   )
 }
 
-export function GlassStatCard({ icon, iconBg, value, label, change, className }: GlassStatCardProps) {
+export function StatCard({ icon, iconBg, value, label, change, className }: StatCardProps) {
   return (
-    <div
-      className={cn(
-        "[background:rgba(255,255,255,0.07)]",
-        "[backdrop-filter:blur(16px)] [-webkit-backdrop-filter:blur(16px)]",
-        "border border-[rgba(255,255,255,0.12)] rounded-[14px]",
-        "p-[18px_20px]",
-        className
-      )}
-    >
+    <Card className={cn("glass-card p-[18px_20px] rounded-[14px] gap-0", className)}>
       {/* Icon */}
       <div
         className="flex items-center justify-center rounded-[10px] mb-3"
@@ -85,6 +77,6 @@ export function GlassStatCard({ icon, iconBg, value, label, change, className }:
           </span>
         )}
       </div>
-    </div>
+    </Card>
   )
 }

@@ -1,4 +1,4 @@
-import { GlassStatCard } from "@/components/glass"
+import { StatCard } from "@/components/dashboard/stat-card"
 
 // Pipeline SVG icon
 function PipelineIcon() {
@@ -77,7 +77,7 @@ export function StatsGrid() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[14px]">
       {STATS.map((stat) => (
-        <GlassStatCard key={stat.label} {...stat} />
+        <StatCard key={stat.label} {...stat} />
       ))}
     </div>
   )

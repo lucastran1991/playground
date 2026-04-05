@@ -1,4 +1,4 @@
-import { GlassCard } from "@/components/glass"
+import { Card } from "@/components/ui/card"
 
 const BAR_DATA = [
   { label: "Mon", success: 60, failed: 20 },
@@ -14,7 +14,7 @@ const CHART_HEIGHT = 140
 
 export function BarChartCard() {
   return (
-    <GlassCard padding="md">
+    <Card className="glass-card p-5 gap-0">
       {/* Header */}
       <p style={{ fontSize: 14, fontWeight: 500, color: "#fff", marginBottom: 4 }}>
         Pipeline Runs
@@ -74,6 +74,6 @@ export function BarChartCard() {
           <span style={{ fontSize: 11, color: "rgba(255,255,255,0.45)" }}>Failed</span>
         </div>
       </div>
-    </GlassCard>
+    </Card>
   )
 }

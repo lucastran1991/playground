@@ -1,4 +1,4 @@
-import { GlassCard } from "@/components/glass"
+import { Card } from "@/components/ui/card"
 
 interface ActivityItem {
   icon: string
@@ -54,7 +54,7 @@ const ACTIVITY: ActivityItem[] = [
 
 export function ActivityFeed() {
   return (
-    <GlassCard padding="md">
+    <Card className="glass-card p-5 gap-0">
       <p style={{ fontSize: 14, fontWeight: 500, color: "#fff", marginBottom: 14 }}>
         Recent Activity
       </p>
@@ -110,6 +110,6 @@ export function ActivityFeed() {
           </div>
         ))}
       </div>
-    </GlassCard>
+    </Card>
   )
 }

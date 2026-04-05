@@ -1,4 +1,6 @@
-import { GlassCard, GlassAvatar, GlassProgress } from "@/components/glass"
+import { Card } from "@/components/ui/card"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+import { ColorProgress } from "@/components/ui/color-progress"
 
 interface TeamMember {
   name: string
@@ -46,7 +48,7 @@ const TEAM: TeamMember[] = [
 
 export function UserListCard() {
   return (
-    <GlassCard padding="md">
+    <Card className="glass-card p-5 gap-0">
       <p style={{ fontSize: 14, fontWeight: 500, color: "#fff", marginBottom: 14 }}>
         Team Members
       </p>
@@ -61,11 +63,15 @@ export function UserListCard() {
               marginBottom: idx < TEAM.length - 1 ? 14 : 0,
             }}
           >
-            <GlassAvatar
-              size="sm"
-              fallback={member.fallback}
-              bg={member.avatarBg}
-            />
+            {/* Avatar: sm = h-8 w-8 */}
+            <Avatar className="h-8 w-8 shrink-0">
+              <AvatarFallback
+                className="text-xs text-white font-medium"
+                style={{ background: member.avatarBg }}
+              >
+                {member.fallback}
+              </AvatarFallback>
+            </Avatar>
 
             {/* Name + role */}
             <div style={{ width: 90, flexShrink: 0 }}>
@@ -79,7 +85,7 @@ export function UserListCard() {
 
             {/* Progress bar */}
             <div className="flex-1">
-              <GlassProgress
+              <ColorProgress
                 value={member.progress}
                 color={member.color}
                 size="sm"
@@ -96,6 +102,6 @@ export function UserListCard() {
           </div>
         ))}
       </div>
-    </GlassCard>
+    </Card>
   )
 }

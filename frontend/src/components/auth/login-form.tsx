@@ -8,6 +8,9 @@ import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { loginSchema, type LoginFormData } from "@/lib/schemas/auth-schema"
 import { SocialLoginButtons } from "@/components/auth/social-login-buttons"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Button } from "@/components/ui/button"
 
 export function LoginForm() {
   const router = useRouter()
@@ -86,15 +89,15 @@ export function LoginForm() {
 
         {/* Email */}
         <div className="mb-4">
-          <label htmlFor="email" className="text-[12px] text-white/50 mb-1.5 block">
+          <Label htmlFor="email" className="text-[12px] text-white/50 mb-1.5 block">
             Email
-          </label>
-          <input
+          </Label>
+          <Input
             id="email"
             type="email"
             placeholder="you@example.com"
             {...register("email")}
-            className="w-full glass-input rounded-[10px] py-[11px] px-3.5 text-[13.5px] text-white placeholder:text-white/20 outline-none transition-all"
+            className="glass-input rounded-[10px] py-[11px] px-3.5 text-[13.5px] text-white placeholder:text-white/20"
           />
           {errors.email && (
             <p className="text-[11.5px] text-[#f0997b] mt-1.5 flex items-center gap-1.5">
@@ -106,20 +109,20 @@ export function LoginForm() {
         {/* Password */}
         <div className="mb-2">
           <div className="flex items-center justify-between mb-1.5">
-            <label htmlFor="password" className="text-[12px] text-white/50 block">
+            <Label htmlFor="password" className="text-[12px] text-white/50 block">
               Password
-            </label>
+            </Label>
             <Link href="/forgot-password" className="text-[11px] text-[#afa9ec] hover:underline">
               Forgot password?
             </Link>
           </div>
           <div className="relative">
-            <input
+            <Input
               id="password"
               type={showPassword ? "text" : "password"}
               placeholder="Min 8 characters"
               {...register("password")}
-              className="w-full glass-input rounded-[10px] py-[11px] px-3.5 pr-10 text-[13.5px] text-white placeholder:text-white/20 outline-none transition-all"
+              className="glass-input rounded-[10px] py-[11px] px-3.5 pr-10 text-[13.5px] text-white placeholder:text-white/20"
             />
             <button
               type="button"
@@ -149,13 +152,13 @@ export function LoginForm() {
         </div>
 
         {/* Submit */}
-        <button
+        <Button
           type="submit"
           disabled={isSubmitting}
-          className="w-full py-3 rounded-[10px] gradient-btn text-white text-sm font-medium flex items-center justify-center gap-2 mt-2 mb-5 transition-all cursor-pointer border-none disabled:opacity-60 disabled:cursor-not-allowed"
+          className="w-full py-3 rounded-[10px] gradient-btn text-white text-sm font-medium flex items-center justify-center gap-2 mt-2 mb-5 transition-all cursor-pointer border-none hover:bg-transparent disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {isSubmitting ? "Signing in..." : "Sign In"}
-        </button>
+        </Button>
 
         {/* Terms */}
         <p className="text-[11px] text-white/50 text-center leading-relaxed">

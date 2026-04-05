@@ -1,7 +1,7 @@
 "use client"
 
 import { SidebarTrigger } from "@/components/ui/sidebar"
-import { GlassBreadcrumb } from "@/components/glass/glass-breadcrumb"
+import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbPage } from "@/components/ui/breadcrumb"
 import { UserMenu } from "./user-menu"
 import { ThemeToggle } from "./theme-toggle"
 
@@ -11,7 +11,13 @@ export function Topbar() {
       <div className="flex items-center gap-2">
         <SidebarTrigger />
         <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.12)" }} aria-hidden="true" />
-        <GlassBreadcrumb items={[{ label: "Dashboard" }]} />
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbPage>Dashboard</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
       </div>
       <div className="flex items-center gap-2">
         {/* Search placeholder — hidden on mobile */}

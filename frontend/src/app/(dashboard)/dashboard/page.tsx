@@ -1,7 +1,7 @@
 "use client"
 
 import { useCurrentUser } from "@/hooks/use-api"
-import { GlassSkeleton } from "@/components/glass/glass-skeleton"
+import { Skeleton } from "@/components/ui/skeleton"
 import { StatsGrid } from "@/components/dashboard/stats-grid"
 import { BarChartCard } from "@/components/dashboard/bar-chart-card"
 import { DonutChartCard } from "@/components/dashboard/donut-chart-card"
@@ -23,7 +23,7 @@ export default function DashboardPage() {
       {/* Header */}
       <div>
         {isLoading ? (
-          <GlassSkeleton height={36} width={256} />
+          <Skeleton className="h-9 w-64" />
         ) : (
           <h1 className="text-3xl font-bold text-white">
             Welcome back,{" "}

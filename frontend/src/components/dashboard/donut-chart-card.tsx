@@ -1,4 +1,4 @@
-import { GlassCard } from "@/components/glass"
+import { Card } from "@/components/ui/card"
 
 // Donut segment data: label, percentage, color
 const SEGMENTS = [
@@ -32,7 +32,7 @@ export function DonutChartCard() {
   const segments = buildSegments()
 
   return (
-    <GlassCard padding="md">
+    <Card className="glass-card p-5 gap-0">
       <p style={{ fontSize: 14, fontWeight: 500, color: "#fff", marginBottom: 16 }}>
         Distribution
       </p>
@@ -108,6 +108,6 @@ export function DonutChartCard() {
           </div>
         ))}
       </div>
-    </GlassCard>
+    </Card>
   )
 }

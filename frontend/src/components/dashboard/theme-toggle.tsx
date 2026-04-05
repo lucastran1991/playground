@@ -1,16 +1,17 @@
 "use client"
 
 import { useThemeVariant } from "@/providers/theme-provider"
-import { GlassButton } from "@/components/glass/glass-button"
+import { Button } from "@/components/ui/button"
 
 // Toggles between "deep" (default purple gradient) and "midnight" (softer navy gradient)
 export function ThemeToggle() {
   const { variant, toggleVariant } = useThemeVariant()
 
   return (
-    <GlassButton
+    <Button
       variant="ghost"
-      iconOnly
+      size="icon"
+      className="bg-white/[0.07] border border-white/[0.12] hover:bg-white/[0.13]"
       onClick={toggleVariant}
       aria-label={`Switch to ${variant === "deep" ? "midnight" : "deep"} theme`}
     >
@@ -25,6 +26,6 @@ export function ThemeToggle() {
           <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
         </svg>
       )}
-    </GlassButton>
+    </Button>
   )
 }

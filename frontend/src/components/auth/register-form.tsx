@@ -8,6 +8,9 @@ import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { registerSchema, type RegisterFormData } from "@/lib/schemas/auth-schema"
 import { apiFetch } from "@/lib/api-client"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Button } from "@/components/ui/button"
 
 export function RegisterForm() {
   const router = useRouter()
@@ -83,12 +86,12 @@ export function RegisterForm() {
 
       {/* Name */}
       <div className="mb-4">
-        <label htmlFor="name" className="text-[12px] text-white/50 mb-1.5 block">Name</label>
-        <input
+        <Label htmlFor="name" className="text-[12px] text-white/50 mb-1.5 block">Name</Label>
+        <Input
           id="name"
           placeholder="Your name"
           {...register("name")}
-          className="w-full glass-input rounded-[10px] py-[11px] px-3.5 text-[13.5px] text-white placeholder:text-white/20 outline-none transition-all"
+          className="glass-input rounded-[10px] py-[11px] px-3.5 text-[13.5px] text-white placeholder:text-white/20"
         />
         {errors.name && (
           <p className="text-[11.5px] text-[#f0997b] mt-1.5 flex items-center gap-1.5">{errors.name.message}</p>
@@ -97,13 +100,13 @@ export function RegisterForm() {
 
       {/* Email */}
       <div className="mb-4">
-        <label htmlFor="email" className="text-[12px] text-white/50 mb-1.5 block">Email</label>
-        <input
+        <Label htmlFor="email" className="text-[12px] text-white/50 mb-1.5 block">Email</Label>
+        <Input
           id="email"
           type="email"
           placeholder="you@example.com"
           {...register("email")}
-          className="w-full glass-input rounded-[10px] py-[11px] px-3.5 text-[13.5px] text-white placeholder:text-white/20 outline-none transition-all"
+          className="glass-input rounded-[10px] py-[11px] px-3.5 text-[13.5px] text-white placeholder:text-white/20"
         />
         {errors.email && (
           <p className="text-[11.5px] text-[#f0997b] mt-1.5 flex items-center gap-1.5">{errors.email.message}</p>
@@ -112,14 +115,14 @@ export function RegisterForm() {
 
       {/* Password */}
       <div className="mb-4">
-        <label htmlFor="password" className="text-[12px] text-white/50 mb-1.5 block">Password</label>
+        <Label htmlFor="password" className="text-[12px] text-white/50 mb-1.5 block">Password</Label>
         <div className="relative">
-          <input
+          <Input
             id="password"
             type={showPassword ? "text" : "password"}
             placeholder="Min 8 characters"
             {...register("password")}
-            className="w-full glass-input rounded-[10px] py-[11px] px-3.5 pr-10 text-[13.5px] text-white placeholder:text-white/20 outline-none transition-all"
+            className="glass-input rounded-[10px] py-[11px] px-3.5 pr-10 text-[13.5px] text-white placeholder:text-white/20"
           />
           <button type="button" aria-label={showPassword ? "Hide password" : "Show password"} onClick={() => setShowPassword((v) => !v)}
             className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60 transition-colors">
@@ -133,14 +136,14 @@ export function RegisterForm() {
 
       {/* Confirm password */}
       <div className="mb-2">
-        <label htmlFor="confirmPassword" className="text-[12px] text-white/50 mb-1.5 block">Confirm Password</label>
+        <Label htmlFor="confirmPassword" className="text-[12px] text-white/50 mb-1.5 block">Confirm Password</Label>
         <div className="relative">
-          <input
+          <Input
             id="confirmPassword"
             type={showConfirm ? "text" : "password"}
             placeholder="Repeat password"
             {...register("confirmPassword")}
-            className="w-full glass-input rounded-[10px] py-[11px] px-3.5 pr-10 text-[13.5px] text-white placeholder:text-white/20 outline-none transition-all"
+            className="glass-input rounded-[10px] py-[11px] px-3.5 pr-10 text-[13.5px] text-white placeholder:text-white/20"
           />
           <button type="button" aria-label={showConfirm ? "Hide password" : "Show password"} onClick={() => setShowConfirm((v) => !v)}
             className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60 transition-colors">
@@ -152,13 +155,13 @@ export function RegisterForm() {
         )}
       </div>
 
-      <button
+      <Button
         type="submit"
         disabled={isSubmitting}
-        className="w-full py-3 rounded-[10px] gradient-btn text-white text-sm font-medium flex items-center justify-center gap-2 mt-2 mb-5 transition-all cursor-pointer border-none disabled:opacity-60 disabled:cursor-not-allowed"
+        className="w-full py-3 rounded-[10px] gradient-btn text-white text-sm font-medium flex items-center justify-center gap-2 mt-2 mb-5 transition-all cursor-pointer border-none hover:bg-transparent disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {isSubmitting ? "Creating account..." : "Create Account"}
-      </button>
+      </Button>
 
       <p className="text-[11px] text-white/50 text-center leading-relaxed">
         By signing up you agree to our{" "}
