@@ -13,9 +13,8 @@ Fullstack starter template with Go (Gin + GORM + SQLite) backend and Next.js 16 
 ### Frontend (`/frontend`)
 - **Next.js 16** (App Router, TypeScript)
 - **React 19** with Server Components
-- **Nexus Glass Component Library** – 34 custom glassmorphism components (replaces most shadcn/ui)
-- **shadcn/ui** – Sidebar, Sheet, DropdownMenu, Tooltip (complex behavior)
-- **Tailwind CSS v4** with custom glass utilities
+- **shadcn/ui** – Components themed with glassmorphism
+- **Tailwind CSS v4** with glassmorphism utilities
 - **TanStack Query v5** for data fetching
 - **React Hook Form** + Zod validation
 - **NextAuth.js v5** for session management
@@ -100,14 +99,7 @@ nexus/
 │   ├── components/
 │   │   ├── auth/           Auth form components
 │   │   ├── dashboard/      Dashboard widgets and layout
-│   │   ├── glass/          34 custom glassmorphism components
-│   │   │   ├── glass-button.tsx
-│   │   │   ├── glass-input.tsx
-│   │   │   ├── glass-card.tsx
-│   │   │   ├── glass-toast.tsx
-│   │   │   ├── ... (30+ more)
-│   │   │   └── index.ts    Central export
-│   │   └── ui/             shadcn/ui (Sidebar, Sheet, DropdownMenu, Tooltip)
+│   │   └── ui/             shadcn/ui components (Button, Input, Card, Avatar, etc.)
 │   ├── hooks/              useAuth, useApi
 │   ├── lib/                Auth config, API client
 │   ├── providers/          Theme, Query, Session

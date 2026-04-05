@@ -1,13 +1,13 @@
 # Codebase Summary - Nexus
 
-Complete fullstack application built with Go (backend) + Next.js (frontend) featuring a custom Nexus Glass Component Library with 34 glassmorphism-optimized components.
+Complete fullstack application built with Go (backend) + Next.js (frontend) with shadcn/ui components themed using glassmorphism CSS utilities.
 
 ## Project Overview
 
 **Nexus** is a modern starter template demonstrating:
 - Clean architecture with layered backend (Go/Gin + GORM)
 - Next.js 16 frontend with React 19 Server Components
-- Custom glass component library replacing shadcn/ui
+- shadcn/ui components with glassmorphism theming
 - JWT authentication with session management
 - SQLite (or PostgreSQL-ready) database
 - Dark-mode-only glassmorphism design system
@@ -46,14 +46,7 @@ nexus/
 │   │   ├── components/
 │   │   │   ├── auth/         # LoginForm, RegisterForm
 │   │   │   ├── dashboard/    # DashboardLayout, Topbar, StatsGrid, Charts
-│   │   │   ├── glass/        # 34 custom glass components
-│   │   │   │   ├── Core Interactive (9): GlassButton, GlassInput, GlassSelect, GlassTextarea, etc.
-│   │   │   │   ├── Feedback (7): GlassBadge, GlassAlert, GlassToast, GlassProgress, etc.
-│   │   │   │   ├── Layout (7): GlassCard, GlassTabs, GlassAccordion, GlassTable, etc.
-│   │   │   │   ├── Overlay (5): GlassCommandPalette, GlassSteps, GlassDropdown, etc.
-│   │   │   │   ├── Specialized (6): GlassDropzone, GlassCodeBlock, GlassBreadcrumb, etc.
-│   │   │   │   └── index.ts  # Central export file
-│   │   │   └── ui/           # shadcn/ui (Sidebar, Sheet, DropdownMenu)
+│   │   │   └── ui/           # shadcn/ui (Button, Input, Card, Avatar, Sidebar, etc.)
 │   │   ├── hooks/            # useAuth, useApi custom hooks
 │   │   ├── lib/              # Auth config, API client, Zod schemas
 │   │   ├── providers/        # SessionProvider, ThemeProvider, QueryProvider
@@ -135,48 +128,18 @@ Model (GORM, Database Schema)
 
 ### Component Categories
 
-**Glass Component Library** (34 custom components)
+**shadcn/ui** – Base component library with glassmorphism theming
 
-1. **Core Interactive** – Forms & inputs
-   - GlassButton (7 variants, 4 sizes)
-   - GlassInput, GlassInputGroup
-   - GlassSelect, GlassTextarea
-   - GlassToggle, GlassCheckbox, GlassRadio
-   - GlassOtpInput
+**Core Components:**
+- Forms: Button, Input, Label, Textarea, Select, Checkbox, Radio, Toggle
+- Layout: Card, Separator, Accordion, Tabs
+- Navigation: Sidebar, Sheet, DropdownMenu, Breadcrumb
+- Data: Avatar, Skeleton
+- Feedback: Tooltip
 
-2. **Feedback & Status** – State indicators
-   - GlassBadge (6 colors)
-   - GlassChip (removable)
-   - GlassAlert (4 types)
-   - GlassToast + Provider + Hook
-   - GlassProgress (bar/circular)
-   - GlassSkeleton, GlassSpinner (3 animations)
-
-3. **Layout & Navigation** – Content containers
-   - GlassCard, GlassStatCard
-   - GlassTabs (pill/underline)
-   - GlassAccordion
-   - GlassTable (sortable)
-   - GlassList
-   - GlassAvatar, GlassAvatarStack
-
-4. **Overlay & Advanced** – Complex interactions
-   - GlassCommandPalette (Cmd+K)
-   - GlassSteps, GlassTimeline
-   - GlassDropdown, GlassTooltip
-
-5. **Specialized** – Domain-specific
-   - GlassDropzone (file upload)
-   - GlassCodeBlock (syntax highlight)
-   - GlassEmptyState
-   - GlassDivider, GlassBreadcrumb
-   - GlassPagination
-
-**Retained shadcn/ui** (for complex behavior)
-- Sidebar (multi-level navigation)
-- Sheet (slide-out panels)
-- DropdownMenu (nested menus)
-- Tooltip (advanced positioning)
+**App-Specific Components:**
+- StatCard – KPI display with trend indicator
+- ColorProgress – Custom progress visualization
 
 ### State Management
 
@@ -367,7 +330,7 @@ See `./docs/code-standards.md` for complete conventions.
 - **Server components**: Async data fetching in `page.tsx`
 - **Client components**: Forms, hooks, event listeners
 - **API layer**: `lib/api-client.ts` with bearer token
-- **Glass imports**: `import { GlassButton } from "@/components/glass"`
+- **Component imports**: `import { Button } from "@/components/ui/button"`
 
 ## Performance Considerations
 
