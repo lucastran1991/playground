@@ -1,6 +1,6 @@
-# MyApp
+# Nexus
 
-Fullstack starter template with Go (Gin + GORM + SQLite) backend and Next.js 16 (React 19 + shadcn/ui + Tailwind v4) frontend.
+Fullstack starter template with Go (Gin + GORM + SQLite) backend and Next.js 16 (React 19 + shadcn/ui + Tailwind v4) frontend. Features a modern glassmorphism design system with dark-mode-only interface.
 
 ## Tech Stack
 
@@ -74,7 +74,7 @@ make clean        # Remove build artifacts
 ## Project Structure
 
 ```
-myapp/
+nexus/
 ├── backend/
 │   ├── cmd/server/         Entry point
 │   ├── internal/

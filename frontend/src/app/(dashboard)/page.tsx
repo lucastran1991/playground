@@ -18,21 +18,21 @@ export default function DashboardPage() {
       {isLoading ? (
         <Skeleton className="h-9 w-64" />
       ) : (
-        <h1 className="text-3xl font-bold">
-          Welcome back, {user?.name ?? "User"}
+        <h1 className="text-3xl font-bold text-white">
+          Welcome back, <span className="gradient-text">{user?.name ?? "User"}</span>
         </h1>
       )}
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {stats.map((stat) => (
-          <Card key={stat.title}>
+          <Card key={stat.title} className="glass-card">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">
+              <CardTitle className="text-sm font-medium text-white/45">
                 {stat.title}
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-2xl font-bold">{stat.value}</p>
+              <p className="text-2xl font-bold text-white">{stat.value}</p>
             </CardContent>
           </Card>
         ))}

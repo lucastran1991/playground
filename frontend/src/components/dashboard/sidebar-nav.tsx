@@ -43,10 +43,19 @@ export function SidebarNav() {
   const pathname = usePathname()
 
   return (
-    <Sidebar>
-      <SidebarHeader className="border-b px-6 py-4">
-        <Link href="/dashboard" className="text-lg font-bold text-primary">
-          App
+    <Sidebar className="glass-sidebar border-r-0">
+      <SidebarHeader className="border-b border-white/8 px-6 py-4">
+        <Link href="/dashboard" className="flex items-center gap-3">
+          <div
+            className="w-[32px] h-[32px] rounded-[9px] flex items-center justify-center"
+            style={{ background: "linear-gradient(135deg, #7f77dd, #1d9e75)" }}
+          >
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+              <path d="M10 2L18 7V13L10 18L2 13V7L10 2Z" stroke="#fff" strokeWidth="1.5" strokeLinejoin="round"/>
+              <circle cx="10" cy="10" r="2.5" fill="#fff"/>
+            </svg>
+          </div>
+          <span className="text-base font-medium text-white">Nexus</span>
         </Link>
       </SidebarHeader>
       <SidebarContent>
@@ -59,6 +68,7 @@ export function SidebarNav() {
                   <SidebarMenuButton
                     render={<Link href={item.href} />}
                     isActive={pathname === item.href}
+                    className="text-white/55 hover:bg-white/8 hover:text-white data-[active=true]:bg-[rgba(127,119,221,0.15)] data-[active=true]:text-[#afa9ec]"
                   >
                     {item.icon}
                     <span>{item.title}</span>

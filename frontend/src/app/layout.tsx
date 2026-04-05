@@ -18,8 +18,8 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "MyApp",
-  description: "Fullstack Go + Next.js starter template",
+  title: "Nexus",
+  description: "AI-powered development team orchestration platform",
 }
 
 export default function RootLayout({
@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${dmSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${dmSans.variable} ${jetbrainsMono.variable} h-full antialiased dark`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
