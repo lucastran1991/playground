@@ -17,6 +17,7 @@ build:
 
 test:
 	cd backend && go test ./...
+	cd frontend && pnpm test
 	cd frontend && pnpm lint
 
 swagger:

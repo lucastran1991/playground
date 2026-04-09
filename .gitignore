@@ -39,3 +39,7 @@ Thumbs.db
 
 # Generated
 repomix-output.*
+
+# Plans & reports (session artifacts)
+plans/reports/
+plans/*/reports/

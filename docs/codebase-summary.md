@@ -41,6 +41,9 @@ nexus/
 │   │   │   ├── (auth)/       # Auth pages (login, register)
 │   │   │   ├── (dashboard)/  # Protected dashboard
 │   │   │   ├── api/auth/     # NextAuth route handler
+│   │   │   ├── error.tsx     # Error boundary with glass card
+│   │   │   ├── loading.tsx   # Loading fallback with glass spinner
+│   │   │   ├── not-found.tsx # 404 page with glass card
 │   │   │   ├── layout.tsx    # Root layout
 │   │   │   └── globals.css   # Glass utilities, theme tokens
 │   │   ├── components/
@@ -125,6 +128,11 @@ Model (GORM, Database Schema)
 - Donut chart (distribution)
 - Activity feed (recent events)
 - User list with avatars
+
+**Error Boundaries & Fallbacks**
+- `error.tsx` – Client error boundary with glass card + retry button
+- `loading.tsx` – Loading skeleton with glass card + spinner animation
+- `not-found.tsx` – 404 page with glass card + home link
 
 ### Component Categories
 
@@ -261,14 +269,24 @@ make clean     # Remove artifacts
 ## Testing
 
 ### Backend
-- Unit tests: `*_test.go` files
+- Unit tests: `*_test.go` files (e.g., `auth_handler_test.go`)
 - Test function pattern: `TestFunctionName(t *testing.T)`
 - Table-driven tests for multiple cases
+- In-memory SQLite for test isolation
+- Run with `go test ./...`
 
 ### Frontend
 - Component tests: Vitest + React Testing Library
 - E2E tests: Playwright
-- Run with `pnpm test`
+- Run with `pnpm test` and `pnpm test:e2e`
+- Config: `vitest.config.ts`, `playwright.config.ts`
+
+### CI/CD
+- GitHub Actions workflow: `.github/workflows/ci.yml`
+- Runs on push to main and pull requests
+- Backend: build + test (Go 1.22)
+- Frontend: lint + build + test (Node 20, pnpm)
+- Parallel jobs for faster feedback
 
 ## Deployment
 

@@ -19,7 +19,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "Nexus",
-  description: "AI-powered development team orchestration platform",
+  description: "Fullstack starter template with Go backend and Next.js frontend",
 }
 
 export default function RootLayout({
