@@ -62,11 +62,14 @@ nexus/
 │   ├── tailwind.config.js    # Tailwind config (v4)
 │   └── eslint.config.mjs     # ESLint config
 │
-├── Makefile                   # Dev/build/test commands
+├── Makefile                   # Dev/build/test commands + Docker targets
 ├── start.sh                   # Local dev with PM2
 ├── deploy.sh                  # Production deployment
 ├── Caddyfile                 # Reverse proxy template
-├── docker-compose.yml        # Local dev with containers
+├── docker-compose.yml        # Docker Compose for local dev (backend + frontend + SQLite volume)
+├── backend/Dockerfile        # Multi-stage Go build (distroless runtime)
+├── frontend/Dockerfile       # Multi-stage Next.js build (alpine runtime)
+├── .github/workflows/ci.yml  # CI/CD: build, test, Docker push, SSH deploy
 ├── .env.example              # Backend env template
 ├── .gitignore                # Git exclusions
 └── README.md                 # Setup instructions
@@ -284,16 +287,36 @@ make clean     # Remove artifacts
 ### CI/CD
 - GitHub Actions workflow: `.github/workflows/ci.yml`
 - Runs on push to main and pull requests
-- Backend: build + test (Go 1.22)
-- Frontend: lint + build + test (Node 20, pnpm)
-- Parallel jobs for faster feedback
+- **Build stage:** Backend (Go 1.25) + Frontend (Node 20, pnpm) in parallel
+- **Docker stage:** Multi-stage builds pushed to ghcr.io (backend & frontend images)
+  - Backend: Go distroless image (~20MB), non-root user
+  - Frontend: Node alpine image (~150MB), non-root user
+- **Deploy stage:** Syncs docker-compose.yml to server via SSH and redeploys
+  - Runs only on main branch (production)
+  - Uses concurrency lock to prevent simultaneous deployments
 
 ## Deployment
 
-### Docker
+### Docker (Local Development)
 ```bash
-docker-compose up
+make docker-build   # Build images
+make docker-up      # Start containers (-d for detached)
+make docker-down    # Stop containers
+make docker-logs    # Stream logs
 ```
+
+**Services:**
+- **backend:** Go distroless image, port 8080
+- **frontend:** Node alpine image, port 3000
+- **db-data:** Named volume for SQLite persistence
+
+**Requirements:** `.env` file with `JWT_SECRET` and `NEXTAUTH_SECRET`
+
+### Docker (Production CI/CD)
+- Automated on main branch push
+- Images pushed to `ghcr.io/{owner}/{repo}/{backend|frontend}`
+- Tags: short SHA + `latest` (on main)
+- SSH deploy pulls latest and redeploys via `docker-compose up -d`
 
 ### Manual (with Caddy reverse proxy)
 ```bash
@@ -319,6 +342,17 @@ NEXT_PUBLIC_API_URL=http://localhost:8080
 NEXTAUTH_URL=http://localhost:3000
 NEXTAUTH_SECRET=your-random-string
 ```
+
+### Docker Compose (.env for docker-compose.yml)
+```env
+JWT_SECRET=your-random-string-32-chars-minimum
+NEXTAUTH_SECRET=your-random-string
+```
+Used by `docker-compose.yml` for backend & frontend services.
+
+### Production CI/CD (GitHub Actions Secrets/Variables)
+- **Secrets:** `SSH_HOST`, `SSH_USER`, `SSH_KEY`
+- **Variables:** `DEPLOY_PATH` (default: `~/app`), `NEXT_PUBLIC_API_URL`
 
 ## Code Standards
 

@@ -373,6 +373,34 @@ declare module "next-auth" {
 - [ ] Are security concerns addressed (auth, validation)?
 - [ ] Are tests included (for Go) or stories (for TS)?
 
+## Docker Standards
+
+### Dockerfile Conventions
+- **Backend:** Multi-stage with builder → distroless (minimal, ~20MB, non-root)
+  - Go 1.25 Alpine builder stage
+  - `CGO_ENABLED=0` for static linking
+  - `gcr.io/distroless/static-debian12:nonroot` runtime
+  - CA certs copied for HTTPS
+- **Frontend:** Multi-stage with deps → builder → runner
+  - Node 20 Alpine with pnpm
+  - Build-time args for `NEXT_PUBLIC_API_URL`
+  - Non-root nodejs user (UID 1001)
+  - Standalone Next.js output mode
+
+### Docker Compose
+- Backend port: 8080 (Gin server)
+- Frontend port: 3000 (Next.js)
+- Volume: `db-data` for SQLite persistence at `/app/data`
+- Services depend on each other (frontend depends on backend)
+- Environment variables injected from `.env`
+
+### CI/CD (GitHub Actions)
+- **Docker builds:** Conditional push on main branch only
+- **Image registry:** `ghcr.io/{owner}/{repo}/{service-name}`
+- **Tagging:** Short SHA + `latest` (on main)
+- **Caching:** GitHub Actions cache layer (gha)
+- **Deploy trigger:** Main branch push only, production environment
+
 ## Tools & Configuration
 
 **Go**
@@ -385,6 +413,12 @@ declare module "next-auth" {
 - `prettier` for code formatting
 - `tsconfig.json` for TypeScript config
 
+**Docker**
+- `Makefile` targets: `docker-build`, `docker-up`, `docker-down`, `docker-logs`
+- `.github/workflows/ci.yml` for automated builds and deployment
+- `docker-compose.yml` for local development orchestration
+
 **Both**
 - `.gitignore` excludes build artifacts, env files
 - Environment variables in `.env` (never committed)
+- Secrets (JWT_SECRET, NEXTAUTH_SECRET, SSH_KEY) in GitHub Actions
