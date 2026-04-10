@@ -27,3 +27,18 @@ clean:
 	rm -f backend/server
 	rm -rf frontend/.next
 	rm -f backend/*.db
+
+# Docker
+.PHONY: docker-build docker-up docker-down docker-logs
+
+docker-build:
+	docker compose build
+
+docker-up:
+	docker compose up -d
+
+docker-down:
+	docker compose down
+
+docker-logs:
+	docker compose logs -f

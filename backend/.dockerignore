@@ -1,0 +1,8 @@
+*.db
+*.db-journal
+server
+server.bak
+.env
+docs/
+tmp/
+.git
