@@ -107,13 +107,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Sync compose file to server
+      - name: Sync compose + caddy config to server
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          source: "docker-compose.yml"
+          source: "docker-compose.yml,compose/caddy/Caddyfile"
           target: ${{ vars.DEPLOY_PATH || '~/app' }}
 
       - name: Deploy via SSH

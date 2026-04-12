@@ -28,38 +28,67 @@ Fullstack starter template with Go (Gin + GORM + SQLite) backend and Next.js 16 
 
 ## Getting Started
 
-### 1. Backend
+### Local Development (PM2)
+
+One command starts both servers with hot reload:
 
 ```bash
-cd backend
-cp .env.example .env
-# Edit .env: set JWT_SECRET to a random 32+ char string
-go run ./cmd/server
+./start.sh           # start backend + frontend via PM2
+./start.sh logs      # tail logs
+./start.sh stop      # stop all
+./start.sh status    # check status
+./start.sh init      # first-time setup (installs deps, builds once)
 ```
 
-Server starts on `http://localhost:8080`.
-Swagger UI at `http://localhost:8080/swagger/index.html`.
+First run copies `.env.example` files — edit `backend/.env` and set `JWT_SECRET`.
 
-### 2. Frontend
+- Backend: http://localhost:8080 (Swagger: /swagger/index.html)
+- Frontend: http://localhost:3000
 
-```bash
-cd frontend
-cp .env.example .env.local
-pnpm install
-pnpm dev
-```
-
-App starts on `http://localhost:3000`.
-
-### 3. Using Makefile
+### Alternative: Makefile
 
 ```bash
-make dev          # Start both servers
+make dev          # Start both servers (foreground, no PM2)
 make build        # Build both for production
 make test         # Run tests + lint
 make swagger      # Regenerate Swagger docs
+make generate-api # Regen swagger + TS types from Go handlers
+make migrate-up   # Apply pending DB migrations
+make migrate-down # Rollback last migration
+make seed         # Insert sample dev users (alice/bob/charlie, password: password123)
+ADMIN_EMAIL=you@example.com ADMIN_PASSWORD=secret make create-admin   # First admin user (prefer env vars over flags — flags show in `ps`)
 make clean        # Remove build artifacts
 ```
+
+### Optional: Git hooks (lefthook)
+
+```bash
+brew install lefthook    # or: go install github.com/evilmartians/lefthook@latest
+lefthook install         # once after clone
+```
+
+Runs `go vet` + `pnpm lint` on commit, tests on push. Skip with `LEFTHOOK=0 git commit ...`.
+
+### Production (Docker Compose)
+
+Self-contained stack: backend + frontend + Caddy reverse proxy with auto-HTTPS.
+
+```bash
+# 1. Set env vars
+cp .env.example .env
+# edit .env: JWT_SECRET, NEXTAUTH_SECRET, DOMAIN (for TLS), NEXT_PUBLIC_API_URL
+
+# 2. Boot
+docker compose up -d --build
+
+# 3. Manage
+docker compose logs -f
+docker compose down
+```
+
+- `DOMAIN=example.com` → Caddy auto-provisions TLS via Let's Encrypt on ports 80/443
+- `DOMAIN=localhost` → HTTP only (testing)
+- CI/CD pushes images to ghcr.io and SSH-deploys on main branch pushes
 
 ## API Endpoints
 
@@ -104,10 +133,10 @@ nexus/
 │   ├── lib/                Auth config, API client
 │   ├── providers/          Theme, Query, Session
 │   └── types/              TypeScript types
+├── compose/caddy/          Caddy reverse proxy config for prod
+├── docker-compose.yml      Prod stack: backend + frontend + caddy
 ├── Makefile                Dev/build/test commands
-├── start.sh                Local dev script (PM2)
-├── deploy.sh               Production deploy script
-└── Caddyfile               Reverse proxy template
+└── start.sh                Local dev script (PM2)
 ```
 
 ## Customization

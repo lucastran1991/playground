@@ -1,0 +1,22 @@
+# Lefthook git hooks config
+# Install: `lefthook install` (run once after clone)
+# Skip temporarily: `LEFTHOOK=0 git commit ...`
+# Docs: https://github.com/evilmartians/lefthook
+
+pre-commit:
+  parallel: true
+  commands:
+    backend-vet:
+      glob: "backend/**/*.go"
+      run: cd backend && go vet ./...
+    frontend-lint:
+      glob: "frontend/**/*.{ts,tsx,js,jsx}"
+      run: cd frontend && pnpm lint
+
+pre-push:
+  parallel: true
+  commands:
+    backend-test:
+      run: cd backend && go test ./...
+    frontend-test:
+      run: cd frontend && pnpm test

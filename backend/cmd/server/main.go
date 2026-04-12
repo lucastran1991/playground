@@ -31,7 +31,7 @@ func main() {
 		log.Fatal("Failed to connect to database: ", err)
 	}
 
-	if err := database.Migrate(db); err != nil {
+	if err := database.RunMigrations(db); err != nil {
 		log.Fatal("Failed to run migrations: ", err)
 	}
 	log.Println("Database connected and migrated")

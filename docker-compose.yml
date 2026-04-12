@@ -16,15 +16,33 @@ services:
     build:
       context: ./frontend
       args:
-        NEXT_PUBLIC_API_URL: http://localhost:8080
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8080}
     ports:
       - "3000:3000"
     environment:
       - NEXTAUTH_SECRET=${NEXTAUTH_SECRET:?Set NEXTAUTH_SECRET in .env}
-      - NEXTAUTH_URL=http://localhost:3000
+      - NEXTAUTH_URL=${NEXTAUTH_URL:-http://localhost:3000}
     depends_on:
       - backend
     restart: unless-stopped
 
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./compose/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    environment:
+      - DOMAIN=${DOMAIN:-localhost}
+    depends_on:
+      - backend
+      - frontend
+
 volumes:
   db-data:
+  caddy-data:
+  caddy-config:

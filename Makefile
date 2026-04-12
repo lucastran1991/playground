@@ -1,4 +1,4 @@
-.PHONY: dev dev-backend dev-frontend build test swagger clean
+.PHONY: dev dev-backend dev-frontend build test swagger clean migrate-up migrate-down seed create-admin generate-api
 
 # Start both servers in parallel
 dev:
@@ -22,6 +22,22 @@ test:
 
 swagger:
 	cd backend && swag init -g cmd/server/main.go -o docs/
+
+migrate-up:
+	cd backend && go run ./cmd/migrate up
+
+migrate-down:
+	cd backend && go run ./cmd/migrate down
+
+seed:
+	cd backend && go run ./cmd/seed
+
+create-admin:
+	cd backend && go run ./cmd/create-admin
+
+generate-api:
+	cd backend && swag init -g cmd/server/main.go -o docs/
+	cd frontend && pnpm generate-api
 
 clean:
 	rm -f backend/server

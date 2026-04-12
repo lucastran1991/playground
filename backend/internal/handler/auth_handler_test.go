@@ -27,7 +27,7 @@ func newTestRouter(t *testing.T) *gin.Engine {
 		t.Fatalf("failed to open in-memory db: %v", err)
 	}
 
-	if err := database.Migrate(db); err != nil {
+	if err := database.RunMigrations(db); err != nil {
 		t.Fatalf("failed to migrate: %v", err)
 	}
 

@@ -33,12 +33,16 @@ node_modules/
 *.swp
 *~
 
+# Claude agent memory (user-local, never commit)
+.claude/agent-memory/
+
 # OS
 .DS_Store
 Thumbs.db
 
 # Generated
 repomix-output.*
+frontend/src/types/.openapi.tmp.json
 
 # Plans & reports (session artifacts)
 plans/reports/
